@@ -1,0 +1,97 @@
+<!-- <section class="content">
+  <div class="container-fluid">
+    <span>Product Form</span>
+    <form [formGroup]="formData" (ngSubmit)="submit()">
+      <div class="row">
+        <div class="col-sm-4 pl">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" />
+            <mat-error
+              *ngIf="
+                formData.controls.name.invalid && formData.controls.name.touched
+              "
+              >Name is invalid</mat-error
+            >
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Price</mat-label>
+            <input matInput formControlName="price" type="number" />
+            <mat-error
+              *ngIf="
+                formData.controls.price.invalid &&
+                formData.controls.price.touched
+              "
+              >Price is invalid</mat-error
+            >
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="formData.invalid">Submit</button>
+    </form>
+  </div>
+</section> -->
+
+<div class="d-flex justify-content-between mx-3">
+  <h3 class="p-2">Product Form</h3>
+  <a
+    mat-raised-button
+    class="m-2"
+    style="cursor: pointer"
+    (click)="navigateToBack()"
+  >
+    <i class="pi pi-spin pi-angle-left" style="font-size: 2rem"></i>
+  </a>
+</div>
+
+<section class="page-wrapper">
+  <div class="form-card">
+    <form [formGroup]="formData" (ngSubmit)="submit()">
+      <mat-form-field appearance="outline" class="m-3">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" />
+        <mat-error
+          *ngIf="
+            formData.controls.name.invalid && formData.controls.name.touched
+          "
+          >Name is invalid</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="m-3">
+        <mat-label>Price</mat-label>
+        <input matInput formControlName="price" type="number" />
+        <mat-error
+          *ngIf="
+            formData.controls.price.invalid && formData.controls.price.touched
+          "
+          >Price is invalid</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="m-3">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+      </mat-form-field>
+
+      <button type="submit" [disabled]="formData.invalid" class="m-3">
+        Submit
+      </button>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,122 @@
+<div class="card">
+  <p-table
+    #dt2
+    [tableStyle]="{ 'min-width': '75rem' }"
+    [paginator]="true"
+    [value]="list"
+    [currentPageReportTemplate]="'{currentPage} of {totalPages}'"
+    [showCurrentPageReport]="true"
+    dataKey="id"
+    [rows]="dataTable.limit"
+    [sortOrder]="-1"
+    [lazy]="true"
+    [lazyLoadOnInit]="false"
+    (onLazyLoad)="nextPage($event)"
+    [totalRecords]="totalRecords"
+  >
+    <ng-template #caption>
+      <div class="d-flex justify-content-between">
+        <p-iconfield iconPosition="left" class="ml-auto">
+          <p-inputicon style="top: 40%">
+            <i class="pi pi-search"></i>
+          </p-inputicon>
+          <input
+            pInputText
+            type="text"
+            class="px-5"
+            (keydown.enter)="searchAction()"
+            placeholder="Search keyword"
+            [(ngModel)]="search"
+          />
+        </p-iconfield>
+        <a
+          mat-raised-button
+          class="text-primary mx-2"
+          style="cursor: pointer"
+          [routerLink]="['/products/details']"
+        >
+          <i class="pi pi-spin pi-plus" style="font-size: 2rem"></i>
+        </a>
+      </div>
+    </ng-template>
+    <ng-template #header>
+      <tr>
+        <th class="thSmall2" [pSortableColumn]="'id'" style="width: 28%">
+          Id <p-sortIcon [field]=""></p-sortIcon>
+        </th>
+        <th [pSortableColumn]="'name'" style="width: 28%">
+          Name <p-sortIcon [field]=""></p-sortIcon>
+        </th>
+        <th [pSortableColumn]="'price'" style="width: 28%">
+          Price <p-sortIcon [field]=""></p-sortIcon>
+        </th>
+        <th class="thSmall2" style="padding: 0 35px">Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-product>
+      <tr>
+        <td>
+          {{ product.id }}
+        </td>
+        <td>
+          {{ product.name }}
+        </td>
+        <td>
+          {{ product.price }}
+        </td>
+        <td>
+          <a
+            mat-raised-button
+            class="text-success mx-2"
+            style="cursor: pointer"
+            [routerLink]="['/products/details', product.id]"
+          >
+            <i class="pi pi-spin pi-wrench" style="font-size: 2rem"></i>
+          </a>
+
+          <a
+            mat-raised-button
+            class="text-danger mx-2"
+            style="cursor: pointer"
+            (click)="deleteProductConfirmation(product)"
+          >
+            <i class="pi pi-spin pi-trash" style="font-size: 2rem"></i>
+          </a>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template #emptymessage>
+      <tr>
+        <td colspan="5">No Products found.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog
+  header="Delete Product"
+  [(visible)]="deletePopup"
+  [modal]="true"
+  [closable]="true"
+  [style]="{ width: '450px' }"
+  [baseZIndex]="10000"
+  [styleClass]="'custom-dialog'"
+>
+  <div class="row verticalForm">
+    <div class="col col-md-12">
+      <h3 class="text-danger">
+        Are you sure to delete "{{ productToBeDeletedName }}" product?
+      </h3>
+    </div>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <button pButton label="Save" (click)="deleteProduct()"></button>
+    <button
+      pButton
+      label="Cancel"
+      class="p-button-text"
+      (click)="hideDeleteProductPopup()"
+    ></button>
+  </ng-template>
+</p-dialog>
