@@ -22,3 +22,7 @@ I create the project using the clean architecture dividing it to 5 layers (API, 
   - Adding Serilog logger and use builtin .Net 8 ExceptionHandler middleware
 
   Ofcourse it depends on all other layers to do so. and ofcourse it has all controllers and there endpoints.
+
+  I create the Angular project toon not much to say, just don't forget to do npm install.
+
+  In the end, I just want to say feel free to review and test the project and you can also ask me about anything unclear on it.
